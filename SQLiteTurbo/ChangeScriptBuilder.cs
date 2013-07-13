@@ -238,11 +238,57 @@ namespace SQLiteTurbo
 
                         // This column will cause any attempt to insert data into the updated table
                         // schema to fail, so we'll issue a warning comment
-                        error = true;
-                        sb.Append("\r\n-- WARNING: Column " + c.ObjectName.ToString() + " in table " + updTable.ObjectName.ToString() + " is NOT NULL and doesn't have a non-null constant DEFAULT clause. " +
-                                  "\r\n--          This will cause any attempt to copy rows from the original table to the updated table to fail." +
-                                  "\r\n--          No rows will be copied from the original table to the updated table!");
-                        sb.Append("\r\n");
+
+                        // There is however, one exception to this rule. If a column was renamed, it would be possible to map
+                        // the old values to the new column -> This is however very experimental, as we have no knowledge if 
+                        // this was really a rename operation.. Try to detect this..
+                        // => Check if column position of column in updated table is = column position of a deleted column in orig
+                        int newIdx = updTable.Columns.IndexOf(c);
+                        string oldColumnName = "";
+
+                        if (origTable.Columns.Count > newIdx)
+                        {
+                            var columnOld = origTable.Columns[newIdx];
+                            oldColumnName = columnOld.ObjectName.ToString();
+
+                            if (!common.Contains(columnOld))
+                            {
+                                //First indicator! There may be a new column and a deleted old column.. Check datatype + Nullable/Const default
+                                if (columnOld.ColumnType.Equals(c.ColumnType))
+                                {
+                                    //Make sure non-nullable are also non-null in original column
+                                    if (!c.IsNullable && (columnOld.IsNullable && !c.HasNonNullConstDefault))
+                                        error = true;
+                                }
+                                else
+                                {
+                                    error = true;
+                                }
+                            }
+                            else
+                            {
+                                error = true;
+                            }
+                        }
+                        else
+                        {
+                            error = true;
+                        }
+
+                        if (error)
+                        {
+                            sb.Append("\r\n-- WARNING: Column " + c.ObjectName.ToString() + " in table " + updTable.ObjectName.ToString() + " is NOT NULL and doesn't have a non-null constant DEFAULT clause. " +
+                                      "\r\n--          This will cause any attempt to copy rows from the original table to the updated table to fail." +
+                                      "\r\n--          No rows will be copied from the original table to the updated table!");
+                            sb.Append("\r\n");
+                        }
+                        else
+                        {
+                            sb.Append("\r\n-- WARNING: Column " + c.ObjectName.ToString() + " in table " + updTable.ObjectName.ToString() + " is NOT NULL and doesn't have a non-null constant DEFAULT clause. " +
+                                      "\r\n--          However, a possible rename operation was detected, from " + oldColumnName + "to " + c.ObjectName.ToString() +
+                                      "\r\n--          Before executing this statement, please verify the logic first!");
+                            sb.Append("\r\n");
+                        }
                     } // foreach
 
                     // Build a select columns list                    

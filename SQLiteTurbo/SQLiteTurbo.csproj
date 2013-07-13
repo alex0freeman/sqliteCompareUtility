@@ -107,9 +107,6 @@
     <Compile Include="CompareParams.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="DiffExporter.cs" />
-    <Compile Include="EtchedLine.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="IWorker.cs" />
     <Compile Include="MailSender.cs" />
     <Compile Include="ProgressEventArgs.cs" />
