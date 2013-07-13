@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{0C4D8682-3D2A-4367-AA71-020DFCEFA65E}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionInfo.cs = SolutionInfo.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteTurbo", "SQLiteTurbo\SQLiteTurbo.csproj", "{16ADD088-AE2A-4D2D-B66C-00ED4D94EC3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteParser", "SQLiteParser\SQLiteParser.csproj", "{31E951ED-11C2-46AA-BE8C-6D954698549E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{6CEE8102-55B6-42B8-AD74-2246AEB2D942}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16ADD088-AE2A-4D2D-B66C-00ED4D94EC3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16ADD088-AE2A-4D2D-B66C-00ED4D94EC3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16ADD088-AE2A-4D2D-B66C-00ED4D94EC3D}.Debug|x86.ActiveCfg = Debug|x86
+		{16ADD088-AE2A-4D2D-B66C-00ED4D94EC3D}.Debug|x86.Build.0 = Debug|x86
+		{16ADD088-AE2A-4D2D-B66C-00ED4D94EC3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16ADD088-AE2A-4D2D-B66C-00ED4D94EC3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16ADD088-AE2A-4D2D-B66C-00ED4D94EC3D}.Release|x86.ActiveCfg = Release|x86
+		{16ADD088-AE2A-4D2D-B66C-00ED4D94EC3D}.Release|x86.Build.0 = Release|x86
+		{31E951ED-11C2-46AA-BE8C-6D954698549E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31E951ED-11C2-46AA-BE8C-6D954698549E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31E951ED-11C2-46AA-BE8C-6D954698549E}.Debug|x86.ActiveCfg = Debug|x86
+		{31E951ED-11C2-46AA-BE8C-6D954698549E}.Debug|x86.Build.0 = Debug|x86
+		{31E951ED-11C2-46AA-BE8C-6D954698549E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31E951ED-11C2-46AA-BE8C-6D954698549E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31E951ED-11C2-46AA-BE8C-6D954698549E}.Release|x86.ActiveCfg = Release|x86
+		{31E951ED-11C2-46AA-BE8C-6D954698549E}.Release|x86.Build.0 = Release|x86
+		{6CEE8102-55B6-42B8-AD74-2246AEB2D942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CEE8102-55B6-42B8-AD74-2246AEB2D942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CEE8102-55B6-42B8-AD74-2246AEB2D942}.Debug|x86.ActiveCfg = Debug|x86
+		{6CEE8102-55B6-42B8-AD74-2246AEB2D942}.Debug|x86.Build.0 = Debug|x86
+		{6CEE8102-55B6-42B8-AD74-2246AEB2D942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CEE8102-55B6-42B8-AD74-2246AEB2D942}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CEE8102-55B6-42B8-AD74-2246AEB2D942}.Release|x86.ActiveCfg = Release|x86
+		{6CEE8102-55B6-42B8-AD74-2246AEB2D942}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal
