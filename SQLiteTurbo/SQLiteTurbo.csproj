@@ -148,6 +148,10 @@
     <Compile Include="WebSiteUtils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{6cee8102-55b6-42b8-ad74-2246aeb2d942}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SQLiteParser\SQLiteParser.csproj">
       <Project>{31E951ED-11C2-46AA-BE8C-6D954698549E}</Project>
       <Name>SQLiteParser</Name>
