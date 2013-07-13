@@ -758,6 +758,7 @@ namespace SQLiteTurbo
                 }
                 else
                     sb.Append(clist[i].ObjectName.ToString());
+                
                 if (i < clist.Count - 1)
                     sb.Append(",");
             } // for

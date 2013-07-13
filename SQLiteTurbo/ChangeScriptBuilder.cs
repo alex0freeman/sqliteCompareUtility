@@ -226,6 +226,7 @@ namespace SQLiteTurbo
                     // common with the original table schema) supports NULL values or have DEFAULT values.
                     bool error = false;
                     List<SQLiteColumnStatement> ncols = new List<SQLiteColumnStatement>();
+                    List<SQLiteColumnStatement> renamed = new List<SQLiteColumnStatement>();
                     foreach (SQLiteColumnStatement c in updTable.Columns)
                     {
                         if (!Utils.ColumnListContains(common, c))
@@ -285,9 +286,12 @@ namespace SQLiteTurbo
                         else
                         {
                             sb.Append("\r\n-- WARNING: Column " + c.ObjectName.ToString() + " in table " + updTable.ObjectName.ToString() + " is NOT NULL and doesn't have a non-null constant DEFAULT clause. " +
-                                      "\r\n--          However, a possible rename operation was detected, from " + oldColumnName + "to " + c.ObjectName.ToString() +
+                                      "\r\n--          However, a possible rename operation was detected, from " + oldColumnName + " to " + c.ObjectName.ToString() +
                                       "\r\n--          Before executing this statement, please verify the logic first!");
                             sb.Append("\r\n");
+
+                            //Add the old colum to the common list, so that it's added in the select
+                            renamed.Add(origTable.Columns[newIdx]);
                         }
                     } // foreach
 
@@ -298,7 +302,15 @@ namespace SQLiteTurbo
                     // schema and that are nullable or have non-null DEFAULT clause.
                     string extralist = string.Empty;
                     if (ncols.Count > 0)
-                        extralist = "," + Utils.BuildNullableOrNonNullConstantDefaultSelectList(ncols);
+                    {
+                        var clause = Utils.BuildNullableOrNonNullConstantDefaultSelectList(ncols);
+                        var clause2 = Utils.BuildColumnsString(renamed, false);
+                        if(!String.IsNullOrWhiteSpace(clause2))
+                            extralist = "," + clause2;
+
+                        if (!String.IsNullOrWhiteSpace(clause))
+                            extralist = "," + clause;
+                    }
 
                     // Compute the list of all columns that are common to both tables and those that exist only in the
                     // updated table but are nullable or have non-null constant default.                    
